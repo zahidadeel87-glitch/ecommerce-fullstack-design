@@ -13,27 +13,51 @@ export default function Navbar() {
         color: "white",
         padding: "15px",
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        alignItems: "center"
       }}
     >
+      {/* Left Side */}
       <div style={{ display: "flex", gap: "15px" }}>
-        <Link to="/" style={{ color: "white" }}>
+        <Link
+          to="/"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           Home
         </Link>
 
-        <Link to="/products" style={{ color: "white" }}>
+        <Link
+          to="/products"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           Products
         </Link>
 
-        <Link to="/cart" style={{ color: "white" }}>
+        <Link
+          to="/cart"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           Cart ({cart.length})
         </Link>
 
-        <Link to="/checkout" style={{ color: "white" }}>
+        <Link
+          to="/checkout"
+          style={{ color: "white", textDecoration: "none" }}
+        >
           Checkout
         </Link>
+
+        {user && (
+          <Link
+            to="/admin"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            Admin
+          </Link>
+        )}
       </div>
 
+      {/* Right Side */}
       <div>
         {user ? (
           <>
@@ -46,7 +70,10 @@ export default function Navbar() {
             </button>
           </>
         ) : (
-          <Link to="/login" style={{ color: "white" }}>
+          <Link
+            to="/login"
+            style={{ color: "white", textDecoration: "none" }}
+          >
             Login
           </Link>
         )}

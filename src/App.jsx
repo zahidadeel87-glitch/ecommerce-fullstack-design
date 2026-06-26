@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
 import Footer from "./components/Footer";
+import Admin from "./pages/Admin";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/admin"element={<ProtectedRoute><Admin />
+    </ProtectedRoute>}/>
         <Route
           path="/cart"
           element={

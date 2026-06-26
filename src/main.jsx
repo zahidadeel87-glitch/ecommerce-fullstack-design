@@ -4,11 +4,16 @@ import App from "./App";
 
 import { CartProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
+import { ProductProvider } from "./context/ProductContext";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
   <AuthProvider>
     <CartProvider>
-      <App />
+      <ProductProvider>
+        <App />
+      </ProductProvider>
     </CartProvider>
   </AuthProvider>
 );
