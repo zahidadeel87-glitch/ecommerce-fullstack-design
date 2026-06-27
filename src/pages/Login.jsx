@@ -12,6 +12,21 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Email validation
+    if (!email.includes("@")) {
+      alert("Please enter a valid email.");
+      return;
+    }
+
+    // Admin credentials
+    if (
+      email !== "admin@gmail.com" ||
+      password !== "123456"
+    ) {
+      alert("Invalid email or password.");
+      return;
+    }
+
     login(email, password);
 
     navigate("/");
@@ -20,62 +35,63 @@ export default function Login() {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
+        textAlign: "center",
         marginTop: "80px",
       }}
     >
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          width: "300px",
-          padding: "30px",
-          border: "1px solid #ddd",
-          borderRadius: "10px",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-        }}
-      >
-        <h1 style={{ textAlign: "center" }}>
-          Login
-        </h1>
+      <h1>Admin Login</h1>
 
+      <form onSubmit={handleSubmit}>
         <input
+          type="email"
           placeholder="Email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={{
-            width: "100%",
             padding: "10px",
-            marginBottom: "15px",
+            width: "250px",
+            margin: "10px",
           }}
         />
 
+        <br />
+
         <input
-          placeholder="Password"
           type="password"
+          placeholder="Password"
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={{
-            width: "100%",
             padding: "10px",
-            marginBottom: "20px",
+            width: "250px",
+            margin: "10px",
           }}
         />
+
+        <br />
 
         <button
           type="submit"
           style={{
-            width: "100%",
-            padding: "12px",
-            backgroundColor: "#28a745",
+            padding: "10px 20px",
+            backgroundColor: "#007bff",
             color: "white",
             border: "none",
-            borderRadius: "5px",
+            borderRadius: "8px",
             cursor: "pointer",
-            fontSize: "16px",
           }}
         >
           Login
         </button>
       </form>
+
+      <p style={{ marginTop: "20px", color: "gray" }}>
+        Demo Admin Login:
+        <br />
+        admin@gmail.com
+        <br />
+        Password: 123456
+      </p>
     </div>
   );
 }
