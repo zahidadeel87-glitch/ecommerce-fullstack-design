@@ -74,6 +74,14 @@ export default function Admin() {
       <br />
 
       <button onClick={handleAdd}>
+        style={{
+  border: "1px solid #ddd",
+  padding: "15px",
+  margin: "15px",
+  borderRadius: "10px",
+  boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+  transition: "0.3s"
+}}
         Add Product
       </button>
 
@@ -85,9 +93,19 @@ export default function Admin() {
 
           <p>Rs. {p.price}</p>
 
-          <button onClick={() => handleDelete(p._id)}>
-            Delete
-          </button>
+          <button
+  onClick={() => handleDelete(p._id)}
+  style={{
+    padding: "8px 15px",
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  }}
+>
+  Delete
+</button>
 
           <hr />
         </div>

@@ -55,6 +55,14 @@ export default function Products() {
             <p>{p.description}</p>
 
             <button onClick={() => addToCart(p)}>
+              style={{
+  border: "1px solid #ddd",
+  padding: "15px",
+  margin: "15px",
+  borderRadius: "10px",
+  boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+  transition: "0.3s"
+}}
               Add to Cart
             </button>
           </div>
