@@ -3,6 +3,7 @@ import { useCart } from "../context/CartContext";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -17,26 +18,47 @@ export default function Products() {
     <div style={{ padding: "20px" }}>
       <h1>Products</h1>
 
-      {products.map((p) => (
-        <div
-          key={p._id}
-          style={{
-            border: "1px solid gray",
-            padding: "10px",
-            margin: "10px",
-          }}
-        >
-          <h3>{p.name}</h3>
+      <input
+        type="text"
+        placeholder="Search by name or category..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        style={{
+          padding: "10px",
+          width: "300px",
+          marginBottom: "20px",
+        }}
+      />
 
-          <p>Price: Rs. {p.price}</p>
+      {products
+        .filter(
+          (p) =>
+            p.name.toLowerCase().includes(search.toLowerCase()) ||
+            (p.category &&
+              p.category
+                .toLowerCase()
+                .includes(search.toLowerCase()))
+        )
+        .map((p) => (
+          <div
+            key={p._id}
+            style={{
+              border: "1px solid gray",
+              padding: "10px",
+              margin: "10px",
+            }}
+          >
+            <h3>{p.name}</h3>
 
-          <p>{p.description}</p>
+            <p>Price: Rs. {p.price}</p>
 
-          <button onClick={() => addToCart(p)}>
-            Add to Cart
-          </button>
-        </div>
-      ))}
+            <p>{p.description}</p>
+
+            <button onClick={() => addToCart(p)}>
+              Add to Cart
+            </button>
+          </div>
+        ))}
     </div>
   );
 }
