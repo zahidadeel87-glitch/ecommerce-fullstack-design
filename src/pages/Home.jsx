@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
       style={{
         textAlign: "center",
         marginTop: "100px",
@@ -28,7 +32,9 @@ export default function Home() {
       </p>
 
       <Link to="/products">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
           style={{
             padding: "15px 30px",
             fontSize: "18px",
@@ -38,12 +44,11 @@ export default function Home() {
             borderRadius: "10px",
             cursor: "pointer",
             boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
-            transition: "0.3s",
           }}
         >
           Shop Now
-        </button>
+        </motion.button>
       </Link>
-    </div>
+    </motion.div>
   );
 }
