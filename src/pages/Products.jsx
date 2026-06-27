@@ -6,7 +6,7 @@ export default function Products() {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://ecommerce-backend1-tyx0.onrender.com/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);

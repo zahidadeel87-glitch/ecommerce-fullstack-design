@@ -6,7 +6,7 @@ export default function Admin() {
   const [price, setPrice] = useState("");
 
   const fetchProducts = () => {
-    fetch("http://localhost:5000/products")
+    fetch("https://ecommerce-backend1-tyx0.onrender.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   };
@@ -18,7 +18,7 @@ export default function Admin() {
   const handleAdd = async () => {
     if (!name || !price) return;
 
-    await fetch("http://localhost:5000/products", {
+    await fetch("https://ecommerce-backend1-tyx0.onrender.com/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,9 +39,12 @@ export default function Admin() {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/products/${id}`, {
-      method: "DELETE",
-    });
+    await fetch(
+      `https://ecommerce-backend1-tyx0.onrender.com/products/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     fetchProducts();
   };
