@@ -4,24 +4,24 @@ const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-  // 🔥 load from localStorage
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // 🔥 save to localStorage whenever cart changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   const addToCart = (product) => {
     setCart((prev) => {
-      const exists = prev.find((i) => i.id === product.id);
+      const exists = prev.find(
+        (i) => i._id === product._id
+      );
 
       if (exists) {
         return prev.map((i) =>
-          i.id === product.id
+          i._id === product._id
             ? { ...i, qty: i.qty + 1 }
             : i
         );
@@ -31,26 +31,32 @@ export function CartProvider({ children }) {
     });
   };
 
-  const increaseQty = (id) => {
+  const increaseQty = (_id) => {
     setCart((prev) =>
       prev.map((i) =>
-        i.id === id ? { ...i, qty: i.qty + 1 } : i
+        i._id === _id
+          ? { ...i, qty: i.qty + 1 }
+          : i
       )
     );
   };
 
-  const decreaseQty = (id) => {
+  const decreaseQty = (_id) => {
     setCart((prev) =>
       prev
         .map((i) =>
-          i.id === id ? { ...i, qty: i.qty - 1 } : i
+          i._id === _id
+            ? { ...i, qty: i.qty - 1 }
+            : i
         )
         .filter((i) => i.qty > 0)
     );
   };
 
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((i) => i.id !== id));
+  const removeFromCart = (_id) => {
+    setCart((prev) =>
+      prev.filter((i) => i._id !== _id)
+    );
   };
 
   const clearCart = () => setCart([]);
@@ -69,7 +75,7 @@ export function CartProvider({ children }) {
         decreaseQty,
         removeFromCart,
         clearCart,
-        total
+        total,
       }}
     >
       {children}
